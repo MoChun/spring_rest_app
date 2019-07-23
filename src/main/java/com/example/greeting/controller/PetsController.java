@@ -1,4 +1,4 @@
-package com.example.greeting;
+package com.example.greeting.controller;
 import com.example.greeting.models.Pets;
 import com.example.greeting.repositories.PetsRepository;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -8,20 +8,25 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.bind.annotation.CrossOrigin;
+//import org.springframework.context.annotation.Bean;
+//import org.springframework.web.servlet.config.annotation.WebMvcConfigurer;
+//import org.springframework.web.servlet.config.annotation.WebMvcConfigurerAdapter;
+//import org.springframework.web.servlet.config.annotation.CorsRegistry;
+//import org.springframework.context.annotation.Configuration;
 import javax.validation.Valid;
 import java.util.List;
 import org.bson.types.ObjectId;
 
 
+@CrossOrigin(origins = "http://localhost:3001")
 @RestController
 @RequestMapping("/pets")
-
 public class PetsController {
     @Autowired
     private PetsRepository repository;
 
     @RequestMapping(value = "/", method = RequestMethod.GET)
-    @CrossOrigin(origins = "http://localhost:3000")
+  //
     public List<Pets> getAllPets() {
         return repository.findAll();
     }
